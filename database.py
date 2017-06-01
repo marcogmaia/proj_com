@@ -46,19 +46,20 @@ class dbNode():
 		self.name = name
 
 	def addChild(self, newChild):
-		pos = bisect.bisect(self.childs, newChild)
-		if self.childs[pos-1] == newChild:
+		pos = bisect.bisect(self.__childs, newChild)
+		if self.__childs[pos-1] == newChild:
 			print("caminho ja existe!")
 			return -1
 		else:
-			bisect.insort(self.childs, newChild)
+			bisect.insort(self.__childs, newChild)
 			return pos
 
-	def updateChild(self, childId):
+	def updateChild(self, child):
+		oldChild = [x for x in self.getChilds() if x.getId() == child.getId()]
+		del self.__childs[bisect.bisect(self.__childs, oldChild) - 1]
+		bisect.insort(self.__childs, child)
 		return childId
-		'''
-		Preciso implementar isso pra poder terminar o addDir do dataBase
-		'''
+
 class dataBase():
 	__staticId = 1
 
@@ -105,8 +106,25 @@ class dataBase():
 					folders = folders[0].getChilds()
 
 			path = root[0]
-			parent = tracer[-1].getId()
+			if len(tracer) > 0:
+				parent = tracer[-1].getId()
+			else:
+				parent = self.id
 			node = dbNode(owner, path, "folder", parent, "not a file!")
+			
+
+			if len(tracer) == 0:
+				pos = bisect.bisect(self.content, node)
+				if self.content[pos-1] == node:
+					print("caminho ja existe!")
+				else:
+					bisect.insort(self.content, node)
+			else:
+				tail = tracer.pop()
+				tail.addChild(node)
+				while len(tracer) > 0:
+					tail = tracer.pop()
+
 			'''
 			Preciso adicionar os filhos recursivamente pra cima e atualizar a pasta raiz do content
 			ou seja, adiciona o novo node na ultima pasta do tracer, depois atualizo essa nova pasta
