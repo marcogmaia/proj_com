@@ -1,8 +1,10 @@
-import socket, select, sys
+import socket
+import select
+import sys
 
-HOST = ''
+HOST = 'localhost'
 PORT = 4321
-BUFFER = 2048
+BUFFER = 4*1024
 SOCKET_LIST = []
 
 
