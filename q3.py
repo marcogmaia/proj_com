@@ -26,7 +26,7 @@ def print_velha():
 
 def get_pos():
     p = int(input())
-    while p < 0 and p > 8:
+    while p < 0 or p > 8:
         print('posição inválida. 0 <= p <= 8')
         p = int(input())
     return p
@@ -80,5 +80,8 @@ for i in range(9):
 
     print_game()
     turn = p2 if turn == p1 else p1
+
+    if i == 8:
+        print('deu Véia.')
 
 
