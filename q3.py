@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-import curses
-# from subprocess import call
 import subprocess
 
 empty = '#'
