@@ -17,6 +17,7 @@ class veia():
     board = [i+1 for i in range(9)]
     board = {i: i for i in board}
     board['plays'] = 0
+    board['winner'] = None
     player1 = 'x'
     player2 = 'o'
     
@@ -33,7 +34,11 @@ class veia():
             (self.board[2] == self.board[5] == self.board[8] == p) or
             (self.board[3] == self.board[6] == self.board[9] == p) or
             (self.board[1] == self.board[5] == self.board[9] == p) or
-            (self.board[3] == self.board[5] == self.board[7] == p)) or self.board['plays'] == 9:
+            (self.board[3] == self.board[5] == self.board[7] == p)):
+            self.board['winner'] = p
+            self.end = True
+
+        elif self.board['plays'] == 9:
             self.end = True
 
 
@@ -56,6 +61,15 @@ class veia():
         for i in reversed(range(3)):
             k = i*3
             print(self.board[k+1], self.board[k+2], self.board[k+3])
+
+    def result_message(self):
+        other_player = veia.player1 if self.player == veia.player2 else veia.player1
+        if self.board['winner'] == self.player:
+            print('Ganhou poar')
+        elif self.board['winner'] == other_player:
+            print('Sifudeu')
+        else:
+            print('Deu véia')
 
     def ended(self):
         return self.end
@@ -101,6 +115,7 @@ def main():
                     game.receive_board(connection.recv(4096))
                     game.print_board()
                     game.check(veia.player2)
+            game.result_message()            
         except KeyboardInterrupt as e:
             print(e)
         finally:
@@ -128,6 +143,7 @@ def main():
                     game.check(veia.player2)
                     game.print_board()
                     connection.send(game.send_board())
+            game.result_message()                   
         except socket.error as e:
             print(e)
         finally:
