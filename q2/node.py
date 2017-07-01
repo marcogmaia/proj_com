@@ -1,5 +1,5 @@
 class node():
-	def __init__(self, name = "", data = "not a file!", owner = [], allowed = set(), parent = "", filetype = "folder"):
+	def __init__(self, name = "", data = "not a file!", owner = None, allowed = dict(), parent = None, filetype = "folder"):
 		self.name = name
 		self.data = data
 		self.owner = owner
@@ -24,80 +24,75 @@ class node():
 		return self.childs
 	'''setters'''
 	def setName(self, newName, curOwner):
-		if newName is not "" and self.getOwner() is curOwner:
+		if newName != "" and self.getOwner() == curOwner:
 			self.name = newName
 			return True
 		return False
 	def setData(self, newData, curOwner):
-		if newData is not "" and self.getOwner() is curOwner:
+		if newData != "" and self.getOwner() == curOwner:
 			self.data = newData
 			return True
 		return False
-	def setOwner(self, curOwner, newOwner):
-		if newOnwer is not None and self.getOwner() is curOwner:
-			self.owner = newOwner
-			return True
-		return False
 	def setAllowed(self, newAllowed, curOwner):
-		if newAllowed is not None and self.getOwner() is curOwner:
-			self.allowed.add(newAllowed)
+		if newAllowed != None and newAllowed[0] not in self.getAllowed() and self.getOwner() == curOwner:
+			self.allowed[newAllowed[0]] = newAllowed[1]
 			return True
 		return False
 	def setParent(self, newParent, curOwner):
-		if newParent is not None and self.getOwner() is curOwner:
+		if newParent is not None and self.getOwner() == curOwner:
 			self.parent = newParent
 			return True
 		return False
 	def setChildren(self, newChild, curOwner):
-		if newChild is not None and newChild not in self.getChildren() and self.getOwner() is curOwner:
+		if newChild != None and newChild not in self.getChildren() and self.getOwner() == curOwner:
 			self.childs.append(newChild)
 			return True
-		if newChild is not None and newChild in self.getChildren() and self.getOwner() is curOwner:
+		if newChild != None and newChild in self.getChildren() and self.getOwner() == curOwner:
 			self.childs.remove(newChild)
 			self.childs.append(newChild)
 			return True
 		return False
 	'''deleters'''
 	def resetAllowed(self, delAllowed, curOwner):
-		if delAllowed is not None and delAllowed in self.getAllowed() and self.getOwner() is curOwner:
-			self.allowed.discard(delAllowed)
+		if delAllowed != None and delAllowed[0] in self.getAllowed() and self.getOwner() == curOwner:
+			del self.allowed[delAllowed[0]]
 			return True
 		return False
 	def resetChildren(self, delChild, curOwner):
-		if delChild is not None and delChild in self.getChildren() and self.getOwner() is curOwner:
+		if delChild != None and delChild in self.getChildren() and self.getOwner() == curOwner:
 			self.childs.remove(delChild)
 			return True
 		return False
 	'''comparisons'''
 	def __lt__(self, other):
-		if self.getType() is other.getType():
+		if self.getType() == other.getType():
 			return self.getName() < other.getName()
-		elif self.getType() is "folder":
+		elif self.getType() == "folder":
 			return True
 		return False
 	def __le__(self, other):
-		if self.getType() is other.getType():
+		if self.getType() == other.getType():
 			return self.getName() <= other.getName()
-		elif self.getType() is "folder":
+		elif self.getType() == "folder":
 			return True
 		return False
 	def __eq__(self, other):
-		if self.getType() is other.getType():
+		if self.getType() == other.getType():
 			return self.getName() == other.getName()
 		return False
 	def __ne__(self, other):
-		if self.getType() is other.getType():
+		if self.getType() == other.getType():
 			return self.getName() != other.getName()
 		return True
 	def __gt__(self, other):
-		if self.getType() is other.getType():
+		if self.getType() == other.getType():
 			return self.getName() > other.getName()
-		elif self.getType() is "folder":
+		elif self.getType() == "folder":
 			return False
 		return True
 	def __ge__(self, other):
-		if self.getType() is other.getType():
+		if self.getType() == other.getType():
 			return self.getName() >= other.getName()
-		elif self.getType() is "folder":
+		elif self.getType() == "folder":
 			return False
 		return True

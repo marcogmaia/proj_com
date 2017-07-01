@@ -9,12 +9,12 @@ class account():
 		return self.password
 	'''setters'''
 	def setUser(self, curAccount, newUser):
-		if newUser is not "" and self.getUser() is curAccount.getUser() and self.getPass() is curAccount.getPass():
+		if newUser != "" and self.getUser() == curAccount.getUser() and self.getPass() == curAccount.getPass():
 			self.user = newUser
 			return True
 		return False
 	def setPass(self, curUser, newPass):
-		if newPass is not "" and self.getUser() is curAccount.getUser() and self.getPass() is curAccount.getPass():
+		if newPass != "" and self.getUser() == curAccount.getUser() and self.getPass() == curAccount.getPass():
 			self.password = newPass
 			return True
 		return False
