@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
-import argparse
 import sys
+import os
+import argparse
 import socket
 import pickle # for veia structure serialization.
-# import curses
-
 import subprocess
+
+
+def clear_scr():
+    if os.name == 'posix':
+        subprocess.run('clear', shell=True)
+    else:
+        os.system('cls', shell=True)
+
 
 class my_parser(argparse.ArgumentParser):
     def error(self, message):
@@ -41,10 +48,10 @@ class veia():
         elif self.board['plays'] == 9:
             self.end = True
 
-
     def make_a_move(self):
-        pos = -1
+        pos = int(input())
         while pos < 1 or 9 < pos:
+            print('Entre com um número em [1..9]: ', end='')
             pos = int(input())
         self.board[pos] = self.player
         self.board['plays'] += 1
@@ -56,7 +63,7 @@ class veia():
         self.board = pickle.loads(bin_board)
 
     def print_board(self):
-        subprocess.run('clear')
+        clear_scr()
         print('positions:')
         for i in reversed(range(3)):
             k = i*3
