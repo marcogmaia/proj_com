@@ -1,0 +1,30 @@
+ftp_client:
+Esse programa roda do lado do cliente do gerenciador de arquivos. As variáveis globais são commands (um dicionário com as funções que o cliente tme acesso), menu (uma string que é mostrada ao usuario para guia-lo), idle (uma tupla que representa o usuário inicial do sistema, quando não há ninguém logado), logged (uma tupla que guarda o usuário atualmente logado) e current_dir (que guarda a atual pasta onde o usuário está).
+
+A função cls limpa a tela.
+
+A função create_usr recebe o socket que está conectado ao servidor e pede ao usuario o nome de usuario e a senha desejada, garante a corretude da senha e gera uma tupla que é enviada ao servidor. Uma vez que o servidor responde o cliente tem conhecimento do resultado da requisição.
+
+A função login recebe o socket que está conectado ao servidor e pede ao usuário o nome de usuário e a senha, gera uma tupla e envia ao servidor. O servidor por sua vez responde se o usuário existe ou não para que o login seja efetuado.
+
+A função makedir recebe o socket que está conectado ao servidor e pede ao usuario o nome da pasta que deseja criar, envia ao servidor a requisição e recebe a resposta do servidor dizendo se a pasta foi criada ou já exisita.
+
+A função upload recebe o socket que está conectado ao servidor e pede ao usuário o nome do arquivo que deseja guardar. Lê o arquivo em pedaços e prepara esses pedaços para enviar. Depois de enviar espera a resposta do servidor dizendo se o arquivo foi criado ou se o usuário já tem um arquivo com o mesmo nome.
+
+A função download recebe o socket que está conectado ao servidor e pede ao usuario o nome do arquivo que deseja recuperar, envia a requisicao ao servidor e recebe de volta o arquivo ou a falha de que o arquivo nao existe.
+
+A função share recebe o socket que está conectado ao servidor e pede ao usuario o caminho que ele deseja compartilhar e com que usuario, depois gera uma tupla com estes dados e envia ao servidor. Depois diz ao usuario se o compartilhamento foi feito com sucesso ou se o caminho ou o usuario selecionado para compartilhar nao existem.
+
+A funcao list recebe o socket que está conectado e pede ao servidor a lista de caminhos que o usuario logado pode acessar.
+
+A funcao changedir recebe o socket que está conectado e pede ao usuario o diretorio para o qual ele deseja ir, depois envia isso ao servidor e espera a confirmacao de mudança de diretorio ou a negação de que a pasta exista.
+
+A função prepararParaEnvio recebe uma lista (conteudo) e um header (cabecalho) que contém as informações de controle e de carga util que devem ser preparadas para envio. gera-se um pacote de bytes usando pickle que será enviado posteriormente.
+
+A função enviar recebe um arquivo em bytes que será enviado e o socket que está conectado ao servidor, que é por onde a mensagem será enviada.
+
+A função receber recebe o socket que estã conectado ao servidor e recebe bytes através dele, que são reconvertidos para dados uteis com o picklem separa os dados em dados de comando, dados de registro de usuario e dados uteis de carga, e os retorna como uma lista.
+
+A funcao salvarArquivo é uma função auxiliar da função download e recebe uma carga (file) e um nome de arquivo (name) que são transformados em arquivo no sistema.
+
+A main do código realiza a conexão do cliente com o servidor e depois entra num loop infinito onde o usuário pode escolher as diversas opcoes à vista.

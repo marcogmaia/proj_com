@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+		<link rel="stylesheet" href="./css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="/js/main.js"></script>
+		<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>API Docs - Aviator</title>
+<meta property="og:title" content="API Docs" />
+<meta name="description" content="Jekyll template for API documentation." />
+<meta property="og:description" content="Jekyll template for API documentation." />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="Aviator" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "WebSite",
+"name": "Aviator",
+"headline": "API Docs",
+"description": "Jekyll template for API documentation.",
+"url": "http://localhost:4000/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+		
+	</head>
+	<body>
+		<header>
+			<h1>
+				<a href="/"><img src="./images/logo.svg" height="40" alt="Aviator logo"></a>
+				<button type="button" class="open-nav" id="open-nav"></button>
+			</h1>
+
+			<form action="/search/" method="get">
+				<input type="text" name="q" id="search-input" placeholder="Search">
+				<input type="submit" value="Search" style="display: none;">
+			</form>
+
+			<div id="sidebar" class="sidebar">
+	
+	
+		
+	
+		
+			<section>
+				<h6>Documentation</h6>
+				<ul>
+					
+					
+						<li>
+							<a href="#documentationgetting_started">
+								Relatório
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="#documentationquestion1">
+								Questão 1
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="#documentationquestion1_client">
+								Client
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="#documentationquestion1_server">
+								Server
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="#documentationquestion2">
+								Questão 2
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="#documentationquestion2_server_description">
+								ftp_server
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="#documentationquestion2_zclient_description">
+								ftp_client
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="#documentationquestion3">
+								Questão 3
+								
+							</a>
+						</li>
+					
+				</ul>
+			</section>
+		
+	
+</div>
+
+
+		<!--	<p class="copyright">
+				<a href="https://cloudcannon.com/">
+					Template by CloudCannon
+				</a>
+			</p>
+        -->
+		</header>
+		<div class="main">
+			
+
+	
+	
+
+	
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationgetting_started">
+						Relatório
+						
+					</a>
+				</h3>
+				
+
+				<h2 id="projeto-de-infraestrutura-de-comunicação">Projeto de infraestrutura de comunicação</h2>
+
+<p>O grupo é formado por:</p>
+
+<p class="success">Marco A. G. Maia - magm2</p>
+
+<p class="success">João Antônio C. S. - jacs</p>
+
+			</section>
+
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationquestion1">
+						Questão 1
+						
+					</a>
+				</h3>
+				
+
+				
+
+			</section>
+
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationquestion1_client">
+						Client
+						
+					</a>
+				</h3>
+				
+
+				<p>O client quando inicializa, abre um arquivo .txt para saber qual o protocolo que será utilizado, e o usuário a partir daí pode enviar alguma mensagem para o servidor, o servidor irá responder com um echo.</p>
+
+			</section>
+
+			
+				<section class="right-code">
+					<div title="q1_client.py" class="language-python highlighter-rouge"><pre class="highlight"><code>
+<span class="c">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">host</span> <span class="o">=</span> <span class="s">'localhost'</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">5555</span>
+
+<span class="k">class</span> <span class="nc">protocol</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">protocol</span><span class="o">=</span><span class="s">'tcp'</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s">'tcp'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+            <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">'</span><span class="se">\x18</span><span class="s">'</span><span class="p">:</span> <span class="c"># CTRL+x pra terminar</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="s">'stop'</span><span class="p">,</span> <span class="s">'utf8'</span><span class="p">))</span>
+                    <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">'utf8'</span><span class="p">))</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s">'udp'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+            <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">'</span><span class="se">\x18</span><span class="s">'</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="s">'stop'</span><span class="p">,</span> <span class="s">'utf8'</span><span class="p">),</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">'utf8'</span><span class="p">),</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'ERROR: protocol not defined'</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'protocol.txt'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">protocol</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+
+
+</code></pre>
+</div>
+
+				</section>
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationquestion1_server">
+						Server
+						
+					</a>
+				</h3>
+				
+
+				<p>O server faz a mesma coisa basicamente que o client, ele abre um arquivo em comum com o client, vê qual o protocolo que será utilizado, inicia o socket do tipo especificado, aguarda alguma mensagem do usuário, e retorna um echo para o usuário.</p>
+
+			</section>
+
+			
+				<section class="right-code">
+					<div title="q1_server.py" class="language-python highlighter-rouge"><pre class="highlight"><code>
+<span class="c">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+
+<span class="n">hostname</span> <span class="o">=</span> <span class="s">'localhost'</span>
+<span class="n">port</span> <span class="o">=</span> <span class="mi">5555</span>
+
+
+<span class="k">class</span> <span class="nc">protocol</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">protocol</span> <span class="o">=</span> <span class="s">'tcp'</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">if</span> <span class="n">protocol</span> <span class="o">==</span> <span class="s">'udp'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">listen</span><span class="p">()</span>
+
+        <span class="k">elif</span> <span class="n">protocol</span> <span class="o">==</span> <span class="s">'tcp'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">hostname</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+            <span class="c"># self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)</span>
+            <span class="c"># self.sock.listen(10)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">listen</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Protocol not defined. Use tcp or udp'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">shutdown</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">listen</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s">'udp'</span><span class="p">:</span>
+            <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">,</span> <span class="n">addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf8'</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">data</span> <span class="o">==</span> <span class="s">'stop'</span><span class="p">:</span>
+                    <span class="nb">exit</span><span class="p">()</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">==</span> <span class="s">'tcp'</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">listen</span><span class="p">()</span>
+            <span class="n">current_connection</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sock</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+            <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">current_connection</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+                <span class="n">datadecode</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf8'</span><span class="p">)</span>
+                <span class="k">if</span>  <span class="n">datadecode</span> <span class="o">==</span> <span class="s">'stop'</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">'STOP command received. Server shutdown.'</span><span class="p">)</span>
+                    <span class="nb">exit</span><span class="p">()</span>
+                <span class="k">elif</span> <span class="n">data</span><span class="p">:</span>
+                    <span class="n">current_connection</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">datadecode</span><span class="p">)</span>
+
+        
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'protocol.txt'</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">protocol</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+
+</code></pre>
+</div>
+
+				</section>
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationquestion2">
+						Questão 2
+						
+					</a>
+				</h3>
+				
+
+				
+
+			</section>
+
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationquestion2_server_description">
+						ftp_server
+						
+					</a>
+				</h3>
+				
+
+				<p>Esse código roda do lado do servidor do gerenciador de arquivos. As variáveis globais são commands (um dicionário com as funções que o cliente tem acesso), users (um dicionário que guarda todos os usuários e suas senhas) e permissions (um outro dicionário que guarda os caminhos que cada usuário tem acesso).</p>
+
+<p>A função register está diretamente ligada à create_user do ftp_cliente. Quando há alguém tentando criar uma conta, essa função é executada. Ela verifica se há algum usuário registrado no sistema com aquele nome, se não, registra o novo usuário e retorna, caso contrário só retorna.</p>
+
+<p>A função checkLogin é executada quando alguém tenta logar no sistema. Ela verifica se o usuário existe, se existir, ela permite que o cliente faça operações logado como aquele usuário, se não, retorna falso.</p>
+
+<p>A função mkdir é chamada quando um usuário tenta criar uma pasta. Ela verifica se eiste uma pasta com aquele nome, se não, ela cria a pasta e registar nos caminhos acessíveis ao usuário que a criou.</p>
+
+<p>A função upload recebe o arquivo que está sendo transmitido. Se o arquivo já existe ela retorna falso, se não cria um arquivo e escreve o conteúdo apropriado nele, depois adiciona nos caminhos acessíveis ao usuário que salvou o arquivo.</p>
+
+<p>A função download é executada quando alguém tenta recuperar um arquivo que lhe pertence, se o arquivo não existe ou se o usuário não tem permissão de visualizar, a função retorna falso, se não ela lê o arquivo do servidor em fatias e retorna a lista de confirmação e o conteudo do arquivo.</p>
+
+<p>A função share verifica se o caminho que está sendo compartilhado e se o usuário que irá receber a permissão existem, caso sim ele adiciona o caminho às permissões do usuário alvo e retorna.</p>
+
+<p>A função list retorna uma lista com todas as permissões de um usuário.</p>
+
+<p>A função changedir verifica se o caminho para o qual o usuário está tentando ir existe e caso existe, se ele tem permissão para tal. Se sim, o servidor retorna uma confirmação positiva.</p>
+
+<p>A função connected é a main de cada conexão realizada. Para cada cliente que se conecta uma thread executando esta função é criada. Ela recebe requisições do socket e as direciona para as funções corretas organizando o retorno de forma apropriada e enviando de volta para o cliente.</p>
+
+<p>A função prepararParaEnvio simplesmente une o cabecalho fornecido, a resposta de controle e os dados uteis em uma lista que é transformada em uma sequencia de bytes e é retornada.</p>
+
+<p>A função enviar recebe uma sequencia de bytes e a envia pelo socket fornecido.</p>
+
+<p>A função receber recebe dados via socket, transforma-o de sequencias de bytes para dados uteis, separa-os em dados de comando, de controle e carga util, e enfim retorna uma lista contendo os dados separados.</p>
+
+<p>A função main cria uma pasta para o banco de dados, se não existir, realiza a conexão ao socket e espera no máximo 16 clientes conectados simultaneamente. Para cada conexão que é realizada a main cria uma thread rodando a função connected.</p>
+
+			</section>
+
+			
+				<section class="right-code">
+					<div title="ftp_server.py" class="language-python highlighter-rouge"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">_thread</span> <span class="kn">as</span> <span class="nn">thread</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+
+<span class="n">commands</span> <span class="o">=</span> <span class="p">{</span><span class="s">'create_user'</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">'login'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s">'makedir'</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s">'upload'</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s">'download'</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s">'share'</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s">'list'</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="s">'changedir'</span><span class="p">:</span><span class="mi">7</span><span class="p">}</span>
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span><span class="s">'idle'</span><span class="p">:</span><span class="s">'idle'</span><span class="p">}</span>
+<span class="n">permissions</span> <span class="o">=</span> <span class="p">{</span><span class="s">'idle'</span><span class="p">:[]}</span>
+
+<span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">users</span><span class="p">[</span><span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">user</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">permissions</span><span class="p">[</span><span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+
+<span class="k">def</span> <span class="nf">checkLogin</span><span class="p">(</span><span class="n">user</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">users</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="n">users</span><span class="p">[</span><span class="n">user</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">!=</span> <span class="n">user</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    
+<span class="k">def</span> <span class="nf">mkdir</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">permissions</span><span class="p">[</span><span class="n">usr</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+
+<span class="k">def</span> <span class="nf">upload</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">con</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="c">#avisa que pode comecar o envio</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="n">name</span><span class="p">],</span> <span class="bp">True</span><span class="p">,</span> <span class="n">commands</span><span class="p">[</span><span class="s">'upload'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">report</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+    <span class="c">#comeca a receber ate a mensagem vazia</span>
+    <span class="n">arquivo</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">"wb"</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">msg</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">:</span>
+            <span class="n">arquivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="n">permissions</span><span class="p">[</span><span class="n">usr</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="nb">file</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">file</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="n">usr</span><span class="p">[</span><span class="mi">0</span><span class="p">]]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="s">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+        <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+            <span class="n">fatia</span> <span class="o">=</span> <span class="n">arquivo</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fatia</span><span class="p">:</span>
+                <span class="n">conteudo</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fatia</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+
+<span class="k">def</span> <span class="nf">share</span><span class="p">(</span><span class="n">owner</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">usr</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">usr</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="n">permissions</span><span class="p">[</span><span class="n">usr</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+
+<span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="n">usr</span><span class="p">):</span>
+    <span class="n">load</span> <span class="o">=</span> <span class="n">permissions</span><span class="p">[</span><span class="n">usr</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">load</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">load</span> <span class="o">=</span> <span class="p">[</span><span class="s">''</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span>
+    
+<span class="k">def</span> <span class="nf">changedir</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">permissions</span><span class="p">[</span><span class="n">usr</span><span class="p">[</span><span class="mi">0</span><span class="p">]]:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="p">[</span><span class="s">''</span><span class="p">]]</span>
+
+<span class="k">def</span> <span class="nf">connected</span><span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">cliente</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Conectado por '</span><span class="o">+</span><span class="n">cliente</span><span class="p">)</span>
+    
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">load</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">msg</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">con</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">usr</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="c">#do things</span>
+        <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="n">commands</span><span class="p">[</span><span class="s">'create_user'</span><span class="p">]:</span>
+            <span class="p">[</span><span class="n">ans</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span> <span class="o">=</span> <span class="n">register</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="n">commands</span><span class="p">[</span><span class="s">'login'</span><span class="p">]:</span>
+            <span class="p">[</span><span class="n">ans</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span> <span class="o">=</span> <span class="n">checkLogin</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="n">commands</span><span class="p">[</span><span class="s">'makedir'</span><span class="p">]:</span>
+            <span class="p">[</span><span class="n">ans</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span> <span class="o">=</span> <span class="n">mkdir</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="n">commands</span><span class="p">[</span><span class="s">'upload'</span><span class="p">]:</span>
+            <span class="p">[</span><span class="n">ans</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span> <span class="o">=</span> <span class="n">upload</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="n">commands</span><span class="p">[</span><span class="s">'download'</span><span class="p">]:</span>
+            <span class="p">[</span><span class="n">ans</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span> <span class="o">=</span> <span class="n">download</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="n">commands</span><span class="p">[</span><span class="s">'share'</span><span class="p">]:</span>
+            <span class="p">[</span><span class="n">ans</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span> <span class="o">=</span> <span class="n">share</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">msg</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="n">commands</span><span class="p">[</span><span class="s">'list'</span><span class="p">]:</span>
+            <span class="p">[</span><span class="n">ans</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">usr</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="n">commands</span><span class="p">[</span><span class="s">'changedir'</span><span class="p">]:</span>
+            <span class="p">[</span><span class="n">ans</span><span class="p">,</span> <span class="n">load</span><span class="p">]</span> <span class="o">=</span> <span class="n">changedir</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">ans</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">load</span><span class="p">)</span>
+        <span class="n">pack</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">(</span><span class="n">load</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">cmd</span><span class="p">)</span>
+        <span class="n">enviar</span><span class="p">(</span><span class="n">pack</span><span class="p">,</span> <span class="n">con</span><span class="p">)</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s">'Conexao com '</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">cliente</span><span class="p">)</span><span class="o">+</span><span class="s">' finalizada'</span><span class="p">)</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">thread</span><span class="o">.</span><span class="nb">exit</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">prepararParaEnvio</span><span class="p">(</span><span class="n">conteudo</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">cabecalho</span><span class="p">):</span>
+    <span class="n">numeroSequencia</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">fila</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c"># cria a lista de pacotes a serem enviados</span>
+    <span class="k">for</span> <span class="n">mensagem</span> <span class="ow">in</span> <span class="n">conteudo</span><span class="p">:</span>
+        <span class="n">pacote</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">numeroSequencia</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pacote</span> <span class="o">=</span> <span class="p">[</span><span class="n">cabecalho</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">mensagem</span><span class="p">]</span>
+            <span class="n">numeroSequencia</span> <span class="o">=</span> <span class="n">numeroSequencia</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pacote</span> <span class="o">=</span> <span class="p">[</span><span class="n">mensagem</span><span class="p">]</span>
+        <span class="n">fila</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pacote</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">fila</span><span class="p">)</span>  <span class="c"># retorna os pacotes prontos para envio</span>
+
+<span class="k">def</span> <span class="nf">enviar</span><span class="p">(</span><span class="n">mensagens</span><span class="p">,</span> <span class="n">con</span><span class="p">):</span>
+    <span class="n">con</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">mensagens</span><span class="p">)</span>
+        
+<span class="k">def</span> <span class="nf">receber</span><span class="p">(</span><span class="n">con</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+    <span class="n">pack</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="n">pack</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="n">pack</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="n">pack</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pack</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pack</span><span class="p">)):</span>
+            <span class="n">payload</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pack</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">command</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span>
+    
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="s">"file_manager_db"</span><span class="p">):</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="s">"file_manager_db"</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s">"file_manager_db"</span><span class="p">)</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s">''</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="mi">23120</span>
+    <span class="n">tcp</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="n">dest</span> <span class="o">=</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">tcp</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
+    <span class="n">tcp</span><span class="o">.</span><span class="n">listen</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">con</span><span class="p">,</span> <span class="n">cliente</span> <span class="o">=</span> <span class="n">tcp</span><span class="o">.</span><span class="n">accept</span><span class="p">()</span>
+        <span class="n">thread</span><span class="o">.</span><span class="n">start_new_thread</span><span class="p">(</span><span class="n">connected</span><span class="p">,</span> <span class="p">(</span><span class="n">con</span><span class="p">,</span> <span class="n">cliente</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">tcp</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre>
+</div>
+
+				</section>
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationquestion2_zclient_description">
+						ftp_client
+						
+					</a>
+				</h3>
+				
+
+				<p>Esse programa roda do lado do cliente do gerenciador de arquivos. As variáveis globais são commands (um dicionário com as funções que o cliente tme acesso), menu (uma string que é mostrada ao usuario para guia-lo), idle (uma tupla que representa o usuário inicial do sistema, quando não há ninguém logado), logged (uma tupla que guarda o usuário atualmente logado) e current_dir (que guarda a atual pasta onde o usuário está).</p>
+
+<p>A função cls limpa a tela.</p>
+
+<p>A função create_usr recebe o socket que está conectado ao servidor e pede ao usuario o nome de usuario e a senha desejada, garante a corretude da senha e gera uma tupla que é enviada ao servidor. Uma vez que o servidor responde o cliente tem conhecimento do resultado da requisição.</p>
+
+<p>A função login recebe o socket que está conectado ao servidor e pede ao usuário o nome de usuário e a senha, gera uma tupla e envia ao servidor. O servidor por sua vez responde se o usuário existe ou não para que o login seja efetuado.</p>
+
+<p>A função makedir recebe o socket que está conectado ao servidor e pede ao usuario o nome da pasta que deseja criar, envia ao servidor a requisição e recebe a resposta do servidor dizendo se a pasta foi criada ou já exisita.</p>
+
+<p>A função upload recebe o socket que está conectado ao servidor e pede ao usuário o nome do arquivo que deseja guardar. Lê o arquivo em pedaços e prepara esses pedaços para enviar. Depois de enviar espera a resposta do servidor dizendo se o arquivo foi criado ou se o usuário já tem um arquivo com o mesmo nome.</p>
+
+<p>A função download recebe o socket que está conectado ao servidor e pede ao usuario o nome do arquivo que deseja recuperar, envia a requisicao ao servidor e recebe de volta o arquivo ou a falha de que o arquivo nao existe.</p>
+
+<p>A função share recebe o socket que está conectado ao servidor e pede ao usuario o caminho que ele deseja compartilhar e com que usuario, depois gera uma tupla com estes dados e envia ao servidor. Depois diz ao usuario se o compartilhamento foi feito com sucesso ou se o caminho ou o usuario selecionado para compartilhar nao existem.</p>
+
+<p>A funcao list recebe o socket que está conectado e pede ao servidor a lista de caminhos que o usuario logado pode acessar.</p>
+
+<p>A funcao changedir recebe o socket que está conectado e pede ao usuario o diretorio para o qual ele deseja ir, depois envia isso ao servidor e espera a confirmacao de mudança de diretorio ou a negação de que a pasta exista.</p>
+
+<p>A função prepararParaEnvio recebe uma lista (conteudo) e um header (cabecalho) que contém as informações de controle e de carga util que devem ser preparadas para envio. gera-se um pacote de bytes usando pickle que será enviado posteriormente.</p>
+
+<p>A função enviar recebe um arquivo em bytes que será enviado e o socket que está conectado ao servidor, que é por onde a mensagem será enviada.</p>
+
+<p>A função receber recebe o socket que estã conectado ao servidor e recebe bytes através dele, que são reconvertidos para dados uteis com o picklem separa os dados em dados de comando, dados de registro de usuario e dados uteis de carga, e os retorna como uma lista.</p>
+
+<p>A funcao salvarArquivo é uma função auxiliar da função download e recebe uma carga (file) e um nome de arquivo (name) que são transformados em arquivo no sistema.</p>
+
+<p>A main do código realiza a conexão do cliente com o servidor e depois entra num loop infinito onde o usuário pode escolher as diversas opcoes à vista.</p>
+
+			</section>
+
+			
+				<section class="right-code">
+					<div title="ftp_client.py" class="language-python highlighter-rouge"><pre class="highlight"><code>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">commands</span> <span class="o">=</span> <span class="p">{</span><span class="s">'create_user'</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="s">'login'</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s">'makedir'</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span> <span class="s">'upload'</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="s">'download'</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span> <span class="s">'share'</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s">'list'</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span> <span class="s">'changedir'</span><span class="p">:</span><span class="mi">7</span><span class="p">}</span>
+<span class="n">menu</span> <span class="o">=</span> <span class="s">"Bem vindo!</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"Digite o numero relacionado a opcao desejada</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"1 - Criar Usuario</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"2 - Login</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"3 - Criar pasta</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"4 - Upload de arquivo</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"5 - Download de arquivo</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"6 - Dar permissao a uma pasta ou arquivo para outro usuario</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"7 - Listar arquivos e pastas que voce pode acessar</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"8 - Mudar diretorio</span><span class="se">\n</span><span class="s">"</span>\
+<span class="s">"Para ver novamente esta mensagem digite menu</span><span class="se">\n</span><span class="s">"</span>
+<span class="n">idle</span> <span class="o">=</span> <span class="p">(</span><span class="s">'idle'</span><span class="p">,</span> <span class="s">'idle'</span><span class="p">)</span>
+<span class="n">logged</span> <span class="o">=</span> <span class="n">idle</span>
+<span class="n">current_dir</span> <span class="o">=</span> <span class="s">""</span>
+
+<span class="k">def</span> <span class="nf">cls</span><span class="p">():</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'cls'</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span><span class="o">==</span><span class="s">'nt'</span> <span class="k">else</span> <span class="s">'clear'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_user</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="n">try_usr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Digite o nome de usuario desejado: '</span><span class="p">))</span>
+    <span class="n">try_pass</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Digite a senha desejada: '</span><span class="p">))</span>
+    <span class="n">try_pass2</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Confirme a senha desejada: '</span><span class="p">))</span>
+    <span class="k">while</span> <span class="n">try_pass</span> <span class="o">!=</span> <span class="n">try_pass2</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Senhas nao conferem, tente novamente!</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">try_pass</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Digite a senha desejada: '</span><span class="p">))</span>
+        <span class="n">try_pass2</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Confirme a senha desejada: '</span><span class="p">))</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="p">[(</span><span class="n">try_usr</span><span class="p">,</span> <span class="n">try_pass</span><span class="p">)]</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">commands</span><span class="p">[</span><span class="s">'create_user'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#receber confirmacao e printar o apropriado</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Usuario criado com sucesso!'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Usuario ja existe!'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Digite o nome de usuario: '</span><span class="p">))</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Digite a senha: '</span><span class="p">))</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="p">(</span><span class="n">usr</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="n">user</span><span class="p">],</span> <span class="n">commands</span><span class="p">[</span><span class="s">'login'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#receber confirmacao e atualizar logged caso apropriado</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Usuario '</span><span class="o">+</span><span class="n">usr</span><span class="o">+</span><span class="s">' logado com sucesso!'</span><span class="p">)</span>
+        <span class="k">global</span> <span class="n">logged</span>
+        <span class="n">logged</span> <span class="o">=</span> <span class="n">user</span>
+        <span class="k">global</span> <span class="n">current_dir</span>
+        <span class="n">current_dir</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Usuario nao existe ou senha incorreta!'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">makedir</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Digite o nome da pasta: '</span><span class="p">))</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="n">path</span><span class="p">],</span> <span class="n">commands</span><span class="p">[</span><span class="s">'makedir'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#confirmar se criou ou nao</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Pasta criada!'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Pasta ja existe!'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">upload</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="c">#estabele canal de envio do arquivo</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Digite o nome do arquivo: '</span><span class="p">))</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="n">current_dir</span><span class="o">+</span><span class="n">path</span><span class="p">],</span> <span class="n">commands</span><span class="p">[</span><span class="s">'upload'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#recebe confirmacao e inicia transmissao</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">"rb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+        <span class="c"># ler pedaços do arquivo(podem testar com mais , 4096 , 4096 etc</span>
+           <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+               <span class="n">fatia</span> <span class="o">=</span> <span class="n">arquivo</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span>
+               <span class="k">if</span> <span class="n">fatia</span><span class="p">:</span>
+                   <span class="n">msg</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="n">fatia</span><span class="p">],</span> <span class="n">current_dir</span><span class="o">+</span><span class="n">path</span><span class="p">)</span>
+                   <span class="n">enviar</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+               <span class="k">else</span><span class="p">:</span>
+                   <span class="k">break</span>
+    <span class="c">#envia mensagem vazia para encerrar</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="s">''</span><span class="p">],</span> <span class="n">current_dir</span><span class="o">+</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">messages</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#recebe confirmacao de upload completo</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Arquivo salvo!'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Arquivo com mesmo nome ja existe!'</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">download</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="c">#request file</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Digite o nome do arquivo: '</span><span class="p">))</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="n">path</span><span class="p">],</span> <span class="n">commands</span><span class="p">[</span><span class="s">'download'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#receive file</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ans</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">salvarArquivo</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Arquivo nao existe!'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">share</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">current_dir</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Que arquivo/pasta deseja compartilhar? '</span><span class="p">))</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">'Com que usuario deseja compartilhar? '</span><span class="p">))</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">usr</span><span class="p">)</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="n">payload</span><span class="p">],</span> <span class="n">commands</span><span class="p">[</span><span class="s">'share'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#recebe confirmacao</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Compartilhado com sucesso!'</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Arquivo/pasta ou usuario nao existem'</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">list</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="s">''</span><span class="p">],</span> <span class="n">commands</span><span class="p">[</span><span class="s">'list'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#recebe lista de pastas e arquivos do usuario</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">payload</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">changedir</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">"Digite a pasta que deseja entrar: "</span><span class="p">))</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">prepararParaEnvio</span><span class="p">([</span><span class="n">path</span><span class="p">],</span> <span class="n">commands</span><span class="p">[</span><span class="s">'changedir'</span><span class="p">])</span>
+    <span class="n">enviar</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">sock</span><span class="p">)</span>
+    <span class="c">#verifica se pasta existe e recebe confirmacao</span>
+    <span class="p">[</span><span class="n">cmd</span><span class="p">,</span> <span class="n">ans</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span> <span class="o">=</span> <span class="n">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ans</span> <span class="o">==</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'Diretorio alterado!'</span><span class="p">)</span>
+        <span class="k">global</span> <span class="n">current_dir</span>
+        <span class="n">current_dir</span> <span class="o">=</span> <span class="n">path</span><span class="o">+</span><span class="nb">chr</span><span class="p">(</span><span class="mi">92</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Pasta nao existe!"</span><span class="p">)</span>
+    
+<span class="k">def</span> <span class="nf">prepararParaEnvio</span><span class="p">(</span><span class="n">conteudo</span><span class="p">,</span> <span class="n">cabecalho</span><span class="p">):</span>
+    <span class="n">numeroSequencia</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">fila</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c"># cria a lista de pacotes a serem enviados</span>
+    <span class="k">for</span> <span class="n">mensagem</span> <span class="ow">in</span> <span class="n">conteudo</span><span class="p">:</span>
+        <span class="n">pacote</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">numeroSequencia</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pacote</span> <span class="o">=</span> <span class="p">[</span><span class="n">cabecalho</span><span class="p">,</span> <span class="n">logged</span><span class="p">,</span> <span class="n">mensagem</span><span class="p">]</span>
+            <span class="n">numeroSequencia</span> <span class="o">=</span> <span class="n">numeroSequencia</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pacote</span> <span class="o">=</span> <span class="n">mensagem</span>
+        <span class="n">fila</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pacote</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">fila</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>  <span class="c"># retorna os pacotes prontos para envio</span>
+
+<span class="k">def</span> <span class="nf">enviar</span><span class="p">(</span><span class="n">mensagens</span><span class="p">,</span> <span class="n">sock</span><span class="p">):</span>
+    <span class="n">sock</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">mensagens</span><span class="p">)</span>
+    <span class="c">#for pack in mensagens:</span>
+    <span class="c">#   sock.send(pack)</span>
+        
+<span class="k">def</span> <span class="nf">receber</span><span class="p">(</span><span class="n">sock</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">sock</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+    <span class="n">pack</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">pack</span><span class="p">)</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="n">pack</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">usr</span> <span class="o">=</span> <span class="n">pack</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">[</span><span class="n">pack</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pack</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pack</span><span class="p">)):</span>
+            <span class="n">payload</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pack</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">command</span><span class="p">,</span> <span class="n">usr</span><span class="p">,</span> <span class="n">payload</span><span class="p">]</span>
+    
+<span class="k">def</span> <span class="nf">salvarArquivo</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="s">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">arquivo</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+            <span class="n">arquivo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="c">#host = str(input('Digite o IP do servidor: '))</span>
+    <span class="c">#port = int(input('Digite a porta do servidor: '))</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s">'127.0.0.1'</span>
+    <span class="n">port</span> <span class="o">=</span> <span class="mi">23120</span>
+    <span class="n">tcp</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="n">dest</span> <span class="o">=</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+    <span class="n">tcp</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dest</span><span class="p">)</span>
+    
+    <span class="n">cmd</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="n">menu</span><span class="p">))</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">"menu"</span><span class="p">:</span>
+            <span class="n">cmd</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="n">menu</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">'1'</span><span class="p">:</span>
+            <span class="n">create_user</span><span class="p">(</span><span class="n">tcp</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">'2'</span><span class="p">:</span>
+            <span class="n">login</span><span class="p">(</span><span class="n">tcp</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">logged</span> <span class="o">!=</span> <span class="n">idle</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">'3'</span><span class="p">:</span>
+                <span class="n">makedir</span><span class="p">(</span><span class="n">tcp</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">'4'</span><span class="p">:</span>
+                <span class="n">upload</span><span class="p">(</span><span class="n">tcp</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">'5'</span><span class="p">:</span>
+                <span class="n">download</span><span class="p">(</span><span class="n">tcp</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">'6'</span><span class="p">:</span>
+                <span class="n">share</span><span class="p">(</span><span class="n">tcp</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">'7'</span><span class="p">:</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">tcp</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">cmd</span> <span class="o">==</span> <span class="s">'8'</span><span class="p">:</span>
+                <span class="n">changedir</span><span class="p">(</span><span class="n">tcp</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">logged</span> <span class="o">==</span> <span class="n">idle</span> <span class="ow">and</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'3'</span><span class="p">,</span><span class="s">'4'</span><span class="p">,</span><span class="s">'5'</span><span class="p">,</span><span class="s">'6'</span><span class="p">,</span><span class="s">'7'</span><span class="p">,</span><span class="s">'8'</span><span class="p">]:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Voce precisa estar logado!"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Opção invalida!'</span><span class="p">)</span>
+        <span class="n">cmd</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+</code></pre>
+</div>
+
+				</section>
+			
+		</section>
+	
+		<section class="doc-content">
+			<section class="left-docs">
+				<h3>
+					<a id="documentationquestion3">
+						Questão 3
+						
+					</a>
+				</h3>
+				
+
+				<p>Nessa questão, o jogo da velha, definimos que deveríamos utilizar um servidor para fazer a aprensentação entre dois usuários para estabelecer a conexão p2p.
+Primeiramente, o server deve ser inicializado.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$./veia.py -m true
+</code></pre>
+</div>
+
+<p>Os usuários subsequentes devem se conectar normalmente, para isso, basta executar o programa após o server ser inicializado.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$./veia.py
+</code></pre>
+</div>
+
+<p>O programa conta com um pequeno ‘help’:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$./veia.py --help
+usage: veia.py [-h] [-m true/false]
+
+A véia game via sockets in python.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -m true/false, --middleware true/false
+                        acts as a middleware/server.
+</code></pre>
+</div>
+
+<p>Quando dois usuários fizerem a conexão, o server fará a apresentação entre os dois e o jogo começará.
+Após inicializado será apresentanda uma matriz na seguinte forma:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>7 8 9
+4 5 6
+1 2 3
+</code></pre>
+</div>
+
+<p>Que quer dizer as posições que devemos jogar, sempre quem se conecta primeir tem a preferencia de iniciar.</p>
+
+<p>Exemplo, no caso se você for o primeiro peer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>7 8 x
+o x o
+x x o
+Venceu.
+</code></pre>
+</div>
+
+<p>O jogo usa serialização para enviar o estado do “tabuleiro” para o outro jogador, decidimos fazer assim porque a complexidade é muito baixa, e enviamos o “jogo” inteiro por meio de uma mensagem, é assim que o fluxo desse programa se dá.</p>
+
+<p>A lógica é nada diferente de um jogo da velha normal, a única diferença a mais do jogo da velha multiplayer via sockets, é que o jogo é interrompido e controlado por meio da troca de mensagens com o socket UDP.</p>
+
+			</section>
+
+			
+				<section class="right-code">
+					<div title="veia.py" class="language-python highlighter-rouge"><pre class="highlight"><code>
+<span class="c">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">pickle</span> <span class="c"># for veia structure serialization.</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+
+
+<span class="n">middleware_ip</span> <span class="o">=</span> <span class="s">'127.0.0.1'</span>
+<span class="n">midd_port</span> <span class="o">=</span> <span class="mi">5554</span>
+
+
+<span class="k">def</span> <span class="nf">clear_scr</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">'posix'</span><span class="p">:</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s">'clear'</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s">'cls'</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">my_parser</span><span class="p">(</span><span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+        <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">'error: {}</span><span class="se">\n</span><span class="s">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_help</span><span class="p">()</span>
+        <span class="n">sys</span><span class="o">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">veia</span><span class="p">():</span>
+    <span class="n">board</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">)]</span>
+    <span class="n">board</span> <span class="o">=</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">board</span><span class="p">}</span>
+    <span class="n">board</span><span class="p">[</span><span class="s">'plays'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">board</span><span class="p">[</span><span class="s">'winner'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">player1</span> <span class="o">=</span> <span class="s">'x'</span>
+    <span class="n">player2</span> <span class="o">=</span> <span class="s">'o'</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">player</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">player</span> <span class="o">=</span> <span class="n">player</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span> <span class="o">=</span> <span class="n">veia</span><span class="o">.</span><span class="n">board</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">==</span> <span class="n">p</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="s">'winner'</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="s">'plays'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">make_a_move</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+        <span class="k">while</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="mi">9</span> <span class="o">&lt;</span> <span class="n">pos</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Entre com um número em [1..9]: '</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="s">'plays'</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">send_board</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">receive_board</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bin_board</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">board</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">bin_board</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">print_board</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">clear_scr</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">'positions:'</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)):</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="mi">3</span>
+            <span class="k">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">3</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">result_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">other_player</span> <span class="o">=</span> <span class="n">veia</span><span class="o">.</span><span class="n">player1</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span> <span class="o">==</span> <span class="n">veia</span><span class="o">.</span><span class="n">player2</span> <span class="k">else</span> <span class="n">veia</span><span class="o">.</span><span class="n">player1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="s">'winner'</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">player</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Venceu.'</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">board</span><span class="p">[</span><span class="s">'winner'</span><span class="p">]</span> <span class="o">==</span> <span class="n">other_player</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Perdeu.'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Deu véia.'</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">ended</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span>
+
+
+<span class="k">def</span> <span class="nf">get_machine_lan_address</span><span class="p">():</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s">'8.8.8.8'</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+    <span class="n">machine_lan</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">machine_lan</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">my_parser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">'A véia game via sockets in python.'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'-m'</span><span class="p">,</span> <span class="s">'--middleware'</span><span class="p">,</span> <span class="n">metavar</span><span class="o">=</span><span class="s">'true/false'</span><span class="p">,</span>
+        <span class="n">help</span><span class="o">=</span><span class="s">'acts as a middleware.'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'false'</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">middleware</span> <span class="o">==</span> <span class="s">'true'</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">midd</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+            <span class="n">midd</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="n">middleware_ip</span><span class="p">,</span> <span class="n">midd_port</span><span class="p">))</span>
+
+            <span class="n">clients</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="n">midd</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">address</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">clients</span><span class="p">:</span>
+                    <span class="k">print</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+                    <span class="n">clients</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">clients</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                        <span class="c"># game = veia(veia.player1)</span>
+                        <span class="n">midd</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">midd</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">veia</span><span class="o">.</span><span class="n">player1</span><span class="p">,</span> <span class="s">'utf8'</span><span class="p">),</span> <span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+                        <span class="c"># game = veia(veia.player2)</span>
+                        <span class="n">midd</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">clients</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">clients</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                        <span class="n">midd</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">veia</span><span class="o">.</span><span class="n">player2</span><span class="p">,</span> <span class="s">'utf8'</span><span class="p">),</span> <span class="n">clients</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+                        <span class="n">clients</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">except</span> <span class="nb">KeyboardInterrupt</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">midd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c"># print(e)</span>
+                <span class="k">pass</span>
+
+    <span class="k">else</span><span class="p">:</span> <span class="c"># "client"</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">connection</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_DGRAM</span><span class="p">)</span>
+
+            <span class="n">connection</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="s">'ack'</span><span class="p">,</span> <span class="s">'utf8'</span><span class="p">),</span> <span class="p">(</span><span class="n">middleware_ip</span><span class="p">,</span> <span class="n">midd_port</span><span class="p">))</span>
+
+            <span class="n">dest_host</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+            <span class="n">player</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">4096</span><span class="p">)</span>
+            <span class="n">game</span> <span class="o">=</span> <span class="n">veia</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf8'</span><span class="p">))</span> 
+
+            <span class="n">dest_host</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">dest_host</span><span class="p">)</span>
+
+
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">game</span><span class="o">.</span><span class="n">ended</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">player</span> <span class="o">==</span> <span class="n">veia</span><span class="o">.</span><span class="n">player1</span><span class="p">:</span>
+                    <span class="n">game</span><span class="o">.</span><span class="n">print_board</span><span class="p">()</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">'Your turn: '</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+                    <span class="n">game</span><span class="o">.</span><span class="n">make_a_move</span><span class="p">()</span>
+                    <span class="n">game</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">veia</span><span class="o">.</span><span class="n">player1</span><span class="p">)</span>
+                    <span class="n">game</span><span class="o">.</span><span class="n">print_board</span><span class="p">()</span>
+                    <span class="n">connection</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">game</span><span class="o">.</span><span class="n">send_board</span><span class="p">(),</span> <span class="n">dest_host</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">game</span><span class="o">.</span><span class="n">ended</span><span class="p">():</span>
+                        <span class="n">game</span><span class="o">.</span><span class="n">receive_board</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">4096</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+                        <span class="n">game</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">veia</span><span class="o">.</span><span class="n">player2</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">player</span> <span class="o">==</span> <span class="n">veia</span><span class="o">.</span><span class="n">player2</span><span class="p">:</span>
+                    <span class="n">game</span><span class="o">.</span><span class="n">receive_board</span><span class="p">(</span><span class="n">connection</span><span class="o">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="mi">4096</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">game</span><span class="o">.</span><span class="n">print_board</span><span class="p">()</span>
+                    <span class="n">game</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">veia</span><span class="o">.</span><span class="n">player1</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">game</span><span class="o">.</span><span class="n">ended</span><span class="p">():</span>
+                        <span class="k">print</span><span class="p">(</span><span class="s">'Your turn: '</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+                        <span class="n">game</span><span class="o">.</span><span class="n">make_a_move</span><span class="p">()</span>
+                        <span class="n">game</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">veia</span><span class="o">.</span><span class="n">player2</span><span class="p">)</span>
+                        <span class="n">game</span><span class="o">.</span><span class="n">print_board</span><span class="p">()</span>
+                        <span class="n">connection</span><span class="o">.</span><span class="n">sendto</span><span class="p">(</span><span class="n">game</span><span class="o">.</span><span class="n">send_board</span><span class="p">(),</span> <span class="n">dest_host</span><span class="p">)</span>
+            <span class="n">game</span><span class="o">.</span><span class="n">result_message</span><span class="p">()</span>
+
+        <span class="k">except</span> <span class="n">socket</span><span class="o">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">connection</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c"># print(e)</span>
+                <span class="k">pass</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre>
+</div>
+
+				</section>
+			
+		</section>
+	
+
+
+		</div>
+		<script>
+			document.getElementById("open-nav").addEventListener("click", function () {
+				document.body.classList.toggle("nav-open");
+			});
+		</script>
+	</body>
+</html>

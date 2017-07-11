@@ -1,0 +1,28 @@
+ftp_server:
+Esse código roda do lado do servidor do gerenciador de arquivos. As variáveis globais são commands (um dicionário com as funções que o cliente tem acesso), users (um dicionário que guarda todos os usuários e suas senhas) e permissions (um outro dicionário que guarda os caminhos que cada usuário tem acesso).
+
+A função register está diretamente ligada à create_user do ftp_cliente. Quando há alguém tentando criar uma conta, essa função é executada. Ela verifica se há algum usuário registrado no sistema com aquele nome, se não, registra o novo usuário e retorna, caso contrário só retorna.
+
+A função checkLogin é executada quando alguém tenta logar no sistema. Ela verifica se o usuário existe, se existir, ela permite que o cliente faça operações logado como aquele usuário, se não, retorna falso.
+
+A função mkdir é chamada quando um usuário tenta criar uma pasta. Ela verifica se eiste uma pasta com aquele nome, se não, ela cria a pasta e registar nos caminhos acessíveis ao usuário que a criou.
+
+A função upload recebe o arquivo que está sendo transmitido. Se o arquivo já existe ela retorna falso, se não cria um arquivo e escreve o conteúdo apropriado nele, depois adiciona nos caminhos acessíveis ao usuário que salvou o arquivo.
+
+A função download é executada quando alguém tenta recuperar um arquivo que lhe pertence, se o arquivo não existe ou se o usuário não tem permissão de visualizar, a função retorna falso, se não ela lê o arquivo do servidor em fatias e retorna a lista de confirmação e o conteudo do arquivo.
+
+A função share verifica se o caminho que está sendo compartilhado e se o usuário que irá receber a permissão existem, caso sim ele adiciona o caminho às permissões do usuário alvo e retorna.
+
+A função list retorna uma lista com todas as permissões de um usuário.
+
+A função changedir verifica se o caminho para o qual o usuário está tentando ir existe e caso existe, se ele tem permissão para tal. Se sim, o servidor retorna uma confirmação positiva.
+
+A função connected é a main de cada conexão realizada. Para cada cliente que se conecta uma thread executando esta função é criada. Ela recebe requisições do socket e as direciona para as funções corretas organizando o retorno de forma apropriada e enviando de volta para o cliente.
+
+A função prepararParaEnvio simplesmente une o cabecalho fornecido, a resposta de controle e os dados uteis em uma lista que é transformada em uma sequencia de bytes e é retornada.
+
+A função enviar recebe uma sequencia de bytes e a envia pelo socket fornecido.
+
+A função receber recebe dados via socket, transforma-o de sequencias de bytes para dados uteis, separa-os em dados de comando, de controle e carga util, e enfim retorna uma lista contendo os dados separados.
+
+A função main cria uma pasta para o banco de dados, se não existir, realiza a conexão ao socket e espera no máximo 16 clientes conectados simultaneamente. Para cada conexão que é realizada a main cria uma thread rodando a função connected.

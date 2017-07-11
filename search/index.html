@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+		<link rel="stylesheet" href="./css/style.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="/js/main.js"></script>
+		<!-- Begin Jekyll SEO tag v2.1.0 -->
+<title>Search - Aviator</title>
+<meta property="og:title" content="Search" />
+<meta name="description" content="Jekyll template for API documentation." />
+<meta property="og:description" content="Jekyll template for API documentation." />
+<link rel="canonical" href="http://localhost:4000/search/" />
+<meta property="og:url" content="http://localhost:4000/search/" />
+<meta property="og:site_name" content="Aviator" />
+<script type="application/ld+json">
+{"@context": "http://schema.org",
+"@type": "WebPage",
+"headline": "Search",
+"description": "Jekyll template for API documentation.",
+"url": "http://localhost:4000/search/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+		
+	</head>
+	<body>
+		<header>
+			<h1>
+				<a href="/"><img src="./images/logo.svg" height="40" alt="Aviator logo"></a>
+				<button type="button" class="open-nav" id="open-nav"></button>
+			</h1>
+
+			<form action="/search/" method="get">
+				<input type="text" name="q" id="search-input" placeholder="Search">
+				<input type="submit" value="Search" style="display: none;">
+			</form>
+
+			<div id="sidebar" class="sidebar">
+	
+	
+		
+	
+		
+			<section>
+				<h6>Documentation</h6>
+				<ul>
+					
+					
+						<li>
+							<a href="/#documentationgetting_started">
+								Relatório
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="/#documentationquestion1">
+								Questão 1
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="/#documentationquestion1_client">
+								Client
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="/#documentationquestion1_server">
+								Server
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="/#documentationquestion2">
+								Questão 2
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="/#documentationquestion2_server_description">
+								ftp_server
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="/#documentationquestion2_zclient_description">
+								ftp_client
+								
+							</a>
+						</li>
+					
+						<li>
+							<a href="/#documentationquestion3">
+								Questão 3
+								
+							</a>
+						</li>
+					
+				</ul>
+			</section>
+		
+	
+</div>
+
+
+		<!--	<p class="copyright">
+				<a href="https://cloudcannon.com/">
+					Template by CloudCannon
+				</a>
+			</p>
+        -->
+		</header>
+		<div class="main">
+			<div class="search-page">
+	<h2>Search Results</h2>
+	
+	<p><span id="search-process">Loading</span> results <span id="search-query-container" style="display: none;">for "<strong id="search-query"></strong>"</span></p>
+	<ul id="search-results"></ul>
+</div>
+
+<script>
+	window.data = {
+		
+			
+				
+					
+						
+						
+						"documentation-getting-started": {
+							"id": "documentation-getting-started",
+							"title": "Relatório",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationgetting_started",
+							"content": "Projeto de infraestrutura de comunicação\n\nO grupo é formado por:\n\nMarco A. G. Maia - magm2\n\nJoão Antônio C. S. - jacs"
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"documentation-question1": {
+							"id": "documentation-question1",
+							"title": "Questão 1",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationquestion1",
+							"content": ""
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"documentation-question1-client": {
+							"id": "documentation-question1-client",
+							"title": "Client",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationquestion1_client",
+							"content": "O client quando inicializa, abre um arquivo .txt para saber qual o protocolo que será utilizado, e o usuário a partir daí pode enviar alguma mensagem para o servidor, o servidor irá responder com um echo."
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"documentation-question1-server": {
+							"id": "documentation-question1-server",
+							"title": "Server",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationquestion1_server",
+							"content": "O server faz a mesma coisa basicamente que o client, ele abre um arquivo em comum com o client, vê qual o protocolo que será utilizado, inicia o socket do tipo especificado, aguarda alguma mensagem do usuário, e retorna um echo para o usuário."
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"documentation-question2": {
+							"id": "documentation-question2",
+							"title": "Questão 2",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationquestion2",
+							"content": ""
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"documentation-question2-server-description": {
+							"id": "documentation-question2-server-description",
+							"title": "ftp_server",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationquestion2_server_description",
+							"content": "Esse código roda do lado do servidor do gerenciador de arquivos. As variáveis globais são commands (um dicionário com as funções que o cliente tem acesso), users (um dicionário que guarda todos os usuários e suas senhas) e permissions (um outro dicionário que guarda os caminhos que cada usuário tem acesso).\n\nA função register está diretamente ligada à create_user do ftp_cliente. Quando há alguém tentando criar uma conta, essa função é executada. Ela verifica se há algum usuário registrado no sistema com aquele nome, se não, registra o novo usuário e retorna, caso contrário só retorna.\n\nA função checkLogin é executada quando alguém tenta logar no sistema. Ela verifica se o usuário existe, se existir, ela permite que o cliente faça operações logado como aquele usuário, se não, retorna falso.\n\nA função mkdir é chamada quando um usuário tenta criar uma pasta. Ela verifica se eiste uma pasta com aquele nome, se não, ela cria a pasta e registar nos caminhos acessíveis ao usuário que a criou.\n\nA função upload recebe o arquivo que está sendo transmitido. Se o arquivo já existe ela retorna falso, se não cria um arquivo e escreve o conteúdo apropriado nele, depois adiciona nos caminhos acessíveis ao usuário que salvou o arquivo.\n\nA função download é executada quando alguém tenta recuperar um arquivo que lhe pertence, se o arquivo não existe ou se o usuário não tem permissão de visualizar, a função retorna falso, se não ela lê o arquivo do servidor em fatias e retorna a lista de confirmação e o conteudo do arquivo.\n\nA função share verifica se o caminho que está sendo compartilhado e se o usuário que irá receber a permissão existem, caso sim ele adiciona o caminho às permissões do usuário alvo e retorna.\n\nA função list retorna uma lista com todas as permissões de um usuário.\n\nA função changedir verifica se o caminho para o qual o usuário está tentando ir existe e caso existe, se ele tem permissão para tal. Se sim, o servidor retorna uma confirmação positiva.\n\nA função connected é a main de cada conexão realizada. Para cada cliente que se conecta uma thread executando esta função é criada. Ela recebe requisições do socket e as direciona para as funções corretas organizando o retorno de forma apropriada e enviando de volta para o cliente.\n\nA função prepararParaEnvio simplesmente une o cabecalho fornecido, a resposta de controle e os dados uteis em uma lista que é transformada em uma sequencia de bytes e é retornada.\n\nA função enviar recebe uma sequencia de bytes e a envia pelo socket fornecido.\n\nA função receber recebe dados via socket, transforma-o de sequencias de bytes para dados uteis, separa-os em dados de comando, de controle e carga util, e enfim retorna uma lista contendo os dados separados.\n\nA função main cria uma pasta para o banco de dados, se não existir, realiza a conexão ao socket e espera no máximo 16 clientes conectados simultaneamente. Para cada conexão que é realizada a main cria uma thread rodando a função connected."
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"documentation-question2-zclient-description": {
+							"id": "documentation-question2-zclient-description",
+							"title": "ftp_client",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationquestion2_zclient_description",
+							"content": "Esse programa roda do lado do cliente do gerenciador de arquivos. As variáveis globais são commands (um dicionário com as funções que o cliente tme acesso), menu (uma string que é mostrada ao usuario para guia-lo), idle (uma tupla que representa o usuário inicial do sistema, quando não há ninguém logado), logged (uma tupla que guarda o usuário atualmente logado) e current_dir (que guarda a atual pasta onde o usuário está).\n\nA função cls limpa a tela.\n\nA função create_usr recebe o socket que está conectado ao servidor e pede ao usuario o nome de usuario e a senha desejada, garante a corretude da senha e gera uma tupla que é enviada ao servidor. Uma vez que o servidor responde o cliente tem conhecimento do resultado da requisição.\n\nA função login recebe o socket que está conectado ao servidor e pede ao usuário o nome de usuário e a senha, gera uma tupla e envia ao servidor. O servidor por sua vez responde se o usuário existe ou não para que o login seja efetuado.\n\nA função makedir recebe o socket que está conectado ao servidor e pede ao usuario o nome da pasta que deseja criar, envia ao servidor a requisição e recebe a resposta do servidor dizendo se a pasta foi criada ou já exisita.\n\nA função upload recebe o socket que está conectado ao servidor e pede ao usuário o nome do arquivo que deseja guardar. Lê o arquivo em pedaços e prepara esses pedaços para enviar. Depois de enviar espera a resposta do servidor dizendo se o arquivo foi criado ou se o usuário já tem um arquivo com o mesmo nome.\n\nA função download recebe o socket que está conectado ao servidor e pede ao usuario o nome do arquivo que deseja recuperar, envia a requisicao ao servidor e recebe de volta o arquivo ou a falha de que o arquivo nao existe.\n\nA função share recebe o socket que está conectado ao servidor e pede ao usuario o caminho que ele deseja compartilhar e com que usuario, depois gera uma tupla com estes dados e envia ao servidor. Depois diz ao usuario se o compartilhamento foi feito com sucesso ou se o caminho ou o usuario selecionado para compartilhar nao existem.\n\nA funcao list recebe o socket que está conectado e pede ao servidor a lista de caminhos que o usuario logado pode acessar.\n\nA funcao changedir recebe o socket que está conectado e pede ao usuario o diretorio para o qual ele deseja ir, depois envia isso ao servidor e espera a confirmacao de mudança de diretorio ou a negação de que a pasta exista.\n\nA função prepararParaEnvio recebe uma lista (conteudo) e um header (cabecalho) que contém as informações de controle e de carga util que devem ser preparadas para envio. gera-se um pacote de bytes usando pickle que será enviado posteriormente.\n\nA função enviar recebe um arquivo em bytes que será enviado e o socket que está conectado ao servidor, que é por onde a mensagem será enviada.\n\nA função receber recebe o socket que estã conectado ao servidor e recebe bytes através dele, que são reconvertidos para dados uteis com o picklem separa os dados em dados de comando, dados de registro de usuario e dados uteis de carga, e os retorna como uma lista.\n\nA funcao salvarArquivo é uma função auxiliar da função download e recebe uma carga (file) e um nome de arquivo (name) que são transformados em arquivo no sistema.\n\nA main do código realiza a conexão do cliente com o servidor e depois entra num loop infinito onde o usuário pode escolher as diversas opcoes à vista."
+						}
+						
+					
+				
+			
+				
+					
+						,
+						
+						"documentation-question3": {
+							"id": "documentation-question3",
+							"title": "Questão 3",
+							"category": "documentation",
+							"description": "",
+		  				"type": "",
+							"url": "/#documentationquestion3",
+							"content": "Nessa questão, o jogo da velha, definimos que deveríamos utilizar um servidor para fazer a aprensentação entre dois usuários para estabelecer a conexão p2p.\nPrimeiramente, o server deve ser inicializado.\n\n$./veia.py -m true\n\n\n\nOs usuários subsequentes devem se conectar normalmente, para isso, basta executar o programa após o server ser inicializado.\n\n$./veia.py\n\n\n\nO programa conta com um pequeno ‘help’:\n\n$./veia.py --help\nusage: veia.py [-h] [-m true/false]\n\nA véia game via sockets in python.\n\noptional arguments:\n  -h, --help            show this help message and exit\n  -m true/false, --middleware true/false\n                        acts as a middleware/server.\n\n\n\nQuando dois usuários fizerem a conexão, o server fará a apresentação entre os dois e o jogo começará.\nApós inicializado será apresentanda uma matriz na seguinte forma:\n\n7 8 9\n4 5 6\n1 2 3\n\n\n\nQue quer dizer as posições que devemos jogar, sempre quem se conecta primeir tem a preferencia de iniciar.\n\nExemplo, no caso se você for o primeiro peer:\n\n7 8 x\no x o\nx x o\nVenceu.\n\n\n\nO jogo usa serialização para enviar o estado do “tabuleiro” para o outro jogador, decidimos fazer assim porque a complexidade é muito baixa, e enviamos o “jogo” inteiro por meio de uma mensagem, é assim que o fluxo desse programa se dá.\n\nA lógica é nada diferente de um jogo da velha normal, a única diferença a mais do jogo da velha multiplayer via sockets, é que o jogo é interrompido e controlado por meio da troca de mensagens com o socket UDP."
+						}
+						
+					
+				
+			
+		
+			
+		
+	};
+</script>
+<script src="/js/lunr.min.js"></script>
+<script src="/js/search.js"></script>
+
+		</div>
+		<script>
+			document.getElementById("open-nav").addEventListener("click", function () {
+				document.body.classList.toggle("nav-open");
+			});
+		</script>
+	</body>
+</html>
